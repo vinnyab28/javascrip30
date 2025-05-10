@@ -1,0 +1,54 @@
+html,
+body {
+	height: 100%;
+	min-height: 100%;
+	overflow: hidden;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	background: black;
+	background-image: url("assets/background.png");
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-size: 60%;
+}
+
+.keys-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 18px;
+	margin-top: 50px;
+}
+
+.key {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	padding: 8px;
+	transition: all 0.07s;
+	color: white;
+	border: 3px solid white;
+	border-radius: 2px;
+	height: 80px;
+	width: 80px;
+}
+
+kbd {
+	font-size: 1.5rem;
+}
+
+.key-description {
+	text-transform: uppercase;
+}
+
+.key.playing {
+	transform: scale(1.1);
+	border-color: #ac0000;
+	box-shadow: 0 0 25px #ac0000;
+}

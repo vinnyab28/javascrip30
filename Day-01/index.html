@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Day 01 - Drum Kit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="#Javascript30 - Day 01 - Drum Kit">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="keys-wrapper">
+            <div class="key" data-key="KeyA"><kbd>A</kbd><span class="key-description">boom</span>
+            </div>
+            <div class="key" data-key="KeyS"><kbd>S</kbd><span class="key-description">clap</span>
+            </div>
+            <div class="key" data-key="KeyD"><kbd>D</kbd><span class="key-description">hihat</span>
+            </div>
+            <div class="key" data-key="KeyF"><kbd>F</kbd><span class="key-description">kick</span>
+            </div>
+            <div class="key" data-key="KeyG"><kbd>G</kbd><span class="key-description">openhat</span>
+            </div>
+            <div class="key" data-key="KeyH"><kbd>H</kbd><span class="key-description">ride</span>
+            </div>
+            <div class="key" data-key="KeyJ"><kbd>J</kbd><span class="key-description">snare</span>
+            </div>
+            <div class="key" data-key="KeyK"><kbd>K</kbd><span class="key-description">tink</span>
+            </div>
+            <div class="key" data-key="KeyL"><kbd>L</kbd><span class="key-description">tom</span></div>
+        </div>
+        <!-- AUDIO -->
+        <audio src="sounds/boom.wav" data-key="KeyA"></audio>
+        <audio src="sounds/clap.wav" data-key="KeyS"></audio>
+        <audio src="sounds/hihat.wav" data-key="KeyD"></audio>
+        <audio src="sounds/kick.wav" data-key="KeyF"></audio>
+        <audio src="sounds/openhat.wav" data-key="KeyG"></audio>
+        <audio src="sounds/ride.wav" data-key="KeyH"></audio>
+        <audio src="sounds/snare.wav" data-key="KeyJ"></audio>
+        <audio src="sounds/tink.wav" data-key="KeyK"></audio>
+        <audio src="sounds/tom.wav" data-key="KeyL"></audio>
+        <!-- SCRIPTS -->
+        <script src="script.js"></script>
+    </body>
+
+</html>
