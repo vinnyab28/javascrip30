@@ -1,0 +1,99 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	max-height: 100%;
+}
+
+body {
+	background: black;
+}
+
+.panel {
+	display: flex;
+	height: 100%;
+	overflow: hidden;
+}
+
+.panel-item {
+	background-repeat: no-repeat;
+	background-size: cover;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	transition: flex 0.3s ease-in-out;
+	position: relative;
+}
+
+.panel-item:hover {
+	cursor: pointer;
+}
+
+.panel-item > * {
+	display: flex;
+	flex: 1 0 auto;
+	align-items: center;
+	justify-content: center;
+	color: black;
+	font-size: 2em;
+	transition: transform 0.3s ease-in, font-size 0.3s ease-in-out;
+}
+
+.panel-item > p:first-child {
+	transform: translateY(-100%);
+	font-family: "Great Vibes", cursive;
+	font-weight: 400;
+	font-style: normal;
+}
+.panel-item.active > p:first-child {
+	transform: translateY(0);
+}
+.panel-item > p:last-child {
+	transform: translateY(100%);
+	font-family: "Great Vibes", cursive;
+	font-weight: 400;
+	font-style: normal;
+}
+.panel-item.active > p:last-child {
+	transform: translateY(0);
+}
+
+.panel-item.active > p:nth-child(2) {
+	font-size: 5em;
+	flex: 1;
+}
+
+.panel-item.open {
+	flex: 3;
+}
+
+.panel-item::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.35);
+	transition: background-color 0.1s ease-in-out;
+}
+
+.panel-item:hover::before {
+	background-color: transparent;
+}
+
+.panel-item1 {
+	background-image: url("https://picsum.photos/id/53/1500/1500");
+}
+.panel-item2 {
+	background-image: url("https://picsum.photos/id/114/1500/1500");
+}
+.panel-item3 {
+	background-image: url("https://picsum.photos/id/185/1500/1500");
+}
+.panel-item4 {
+	background-image: url("https://picsum.photos/id/218/1500/1500");
+}
+.panel-item5 {
+	background-image: url("https://picsum.photos/id/302/1500/1500");
+}
