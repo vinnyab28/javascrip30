@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Day 08 - Fun with HTML5 Canvas</title>
+        <meta name="description" content="Day 08 - Fun with HTML5 Canvas">
+        <style>
+            html,
+            body {
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="canvas" height="100" width="100"></canvas>
+
+        <script>
+            const canvas = document.querySelector("#canvas");
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+
+            const ctx = canvas.getContext("2d");
+            // ctx.globalCompositeOperation = 'exclusion';
+
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            // let strokeStyle = hsl("0", "100%", "50%");
+            let hue = "0"
+            let lineWidth = 10;
+            let direction = true;
+
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+
+            function draw(e) {
+                if (!isDrawing) {
+                    return;
+                }
+                ctx.beginPath();
+
+                ctx.lineWidth = lineWidth;
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(e.offsetX, e.offsetY);
+
+                if (hue >= 255) {
+                    hue = 0
+                }
+                ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+                ctx.stroke();
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+
+                if (lineWidth >= 100 || lineWidth <= 1) {
+                    direction = !direction;
+                }
+
+                if (direction) {
+                    lineWidth++;
+                } else {
+                    lineWidth--;
+                }
+                hue++;
+            }
+
+            document.addEventListener("mousedown", (e) => {
+                isDrawing = true;
+                [lastX, lastY] = [e.clientX, e.clientY];
+            });
+            document.addEventListener("mouseup", () => isDrawing = false);
+            document.addEventListener("mouseleave", () => isDrawing = false);
+            document.addEventListener("mousemove", draw);
+
+        </script>
+    </body>
+
+</html>
