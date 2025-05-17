@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Day 06 - Type Ahead 👀</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="https://fav.farm/🔥" />
+        <meta name="description" content="Day 06 - Type Ahead">
+    </head>
+
+    <body>
+
+        <form class="search-form">
+            <input type="text" class="search" placeholder="City or State">
+            <ul class="suggestions">
+                <li>Filter for a city</li>
+                <li>or a state</li>
+            </ul>
+        </form>
+        <script>
+            const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+            const cities = [];
+
+            fetch(endpoint).then((res) => res.json()).then((fetchedCities) => {
+                cities.push(...fetchedCities);
+            });
+
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            const inputText = document.querySelector(".search");
+            const suggestionsSection = document.querySelector(".suggestions");
+
+            function getFilteredCities(wordToSearch) {
+                const regex = new RegExp(wordToSearch, "gi");
+                return cities.filter((city) => {
+                    return city.city.match(regex) || city.state.match(regex);
+                })
+            }
+
+            function filterCities() {
+                const searchValue = this.value;
+                const filteredCities = getFilteredCities(searchValue);
+
+                let html = ""
+
+                filteredCities.forEach((city) => {
+                    const regex = new RegExp(searchValue, "gi");
+                    const higlightedCity = city.city.replace(regex, `<span class="hl">${searchValue}</span>`);
+                    const higlightedState = city.state.replace(regex, `<span class="hl">${searchValue}</span>`);
+                    const formattedPopulation = numberWithCommas(city.population);
+
+                    html += `<li>
+                        <span class="name">${higlightedCity}, ${higlightedState}</span>
+                        <span class="population">${formattedPopulation}</span>
+                    </li>`
+                });
+
+                // console.log(html);
+
+                suggestionsSection.innerHTML = html;
+            }
+
+            inputText.addEventListener("change", filterCities);
+            inputText.addEventListener("keyup", filterCities);
+        </script>
+    </body>
+
+</html>
